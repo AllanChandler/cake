@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/Cupcake.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Lines</title>
+</head>
+<body>
+
+    <header>
+        <img src="../public/images/cupcakelogo.png" th:src="@{/images/cupcakelogo.png}" width="100%"/>
+    </header>
+
+    <h1>Order Lines</h1>
+    <form action="/submitOrder" method="post">
+        <table class="orderline-table">
+            <thead>
+            <tr>
+                <th>Order Line ID</th>
+                <th>Topping</th>
+                <th>Bund</th>
+                <th>Antal</th>
+                <th>Price</th>
+                <th>Deletion</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="orderLine : ${orderLines}">
+                <td><input type="text" name="orderLineId" th:value="${orderLine.orderLineId}" readonly /></td>
+                <td><input type="text" name="topping" th:value="${orderLine.topping}" readonly /></td>
+                <td><input type="text" name="bund" th:value="${orderLine.bund}" readonly /></td>
+                <td><input type="text" name="antal" th:value="${orderLine.antal}" readonly /></td>
+                <td><input type="text" name="price" th:value="${orderLine.price}" readonly /></td>
+                <td>
+                    <button type="submit" name="orderLineId" th:value="${orderLine.orderLineId}" formaction="/deleteOrderLine">Delete</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
